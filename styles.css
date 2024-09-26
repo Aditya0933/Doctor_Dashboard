@@ -1,0 +1,106 @@
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    max-width: 1440px;
+    background-color: #F6F7F8;
+    padding: 10px;
+}
+
+.main-nav-section{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 0 25px;
+    border-radius: 60px;
+}
+
+.nav-items{
+    display: flex;
+    list-style-type: none;
+}
+.nav-items li{
+    font-size: 14px;
+    margin: 0 10px;
+    padding: 8px 16px;
+    transition: .3s all ease-in-out;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.nav-items li:hover{
+    background-color: #01F0D0;
+}
+.nav-items li span{
+    margin-left: 5px;
+}
+
+.nav-profile-data{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.nav-profile-data-info{
+    display: flex;
+    align-items: center;
+}
+.nav-profile-data-info span{
+    margin-left: 8px;
+    font-size: 14px;
+}
+
+/*Main Conatiner Section style */
+.main-container{
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-gap: 18px;
+    margin-top: 18px;
+}
+.patient-section{
+    border-radius: 14px;
+    background-color: #FFFFFF;
+}
+.scrollable::-webkit-scrollbar {
+    width: 4px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+    height: 10px !important;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.scrollable::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+.patient-section-heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.diagnosis-section{
+    background-color: #FFFFFF;
+}
+/* .patient-info-section{
+    background-color: #FFFFFF;
+} */
+
+.info-btn{
+    font-size: 16px;
+    padding: 8px 24px;
+    background-color: #01F0D0;
+    border-radius: 50px;
+    border: none;
+}
