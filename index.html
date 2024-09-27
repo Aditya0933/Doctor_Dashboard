@@ -1,323 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Side Nav Example</title>
     <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    />
-  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 
-  <body>
-    <div style="width: 100%">
-      <section>
-        <div class="main-nav-section">
-          <div>
-            <img src="./IMG/TestLogo.svg" />
-          </div>
-          <div>
-            <ul class="nav-items">
-              <li>
-                <i class="fa-solid fa-house"></i>
-                <span>Overview</span>
-              </li>
-              <li>
-                <i class="fa-regular fa-user"></i>
-                <span>Patients</span>
-              </li>
-              <li>
-                <i class="fa-regular fa-calendar"></i>
-                <span>Schedule</span>
-              </li>
-              <li>
-                <i class="fa-regular fa-message"></i>
-                <span>Message</span>
-              </li>
-              <li>
-                <i class="fa-solid fa-wallet"></i>
-                <span>Transaction</span>
-              </li>
-            </ul>
-          </div>
-          <div class="nav-profile-data">
-            <div class="nav-profile-data-info">
-              <div>
-                <img
-                  src="./IMG/senior-woman-doctor-and-portrait-smile-for-health-2023-11-27-05-18-16-utc@2x.png"
-                  style="height: 40px; width: 40px"
-                />
-              </div>
-              <div>
-                <span>Dr. Jose Simmons</span><br />
-                <span style="font-size: 12px; color: #707070"
-                  >General Practitioner</span
-                >
-              </div>
-            </div>
-            <div>
-              <i class="fa-solid fa-gear"></i>
-              <i
-                class="fa-solid fa-ellipsis-vertical"
-                style="margin-left: 8px"
-              ></i>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div class="main-container">
-          <!-- section 1 -->
-          <div
-            class="patient-section scrollable"
-            style="padding: 15px 15px; height: 100vh; overflow-y: scroll"
-          >
-            <div class="patient-section-heading" style="padding: 10px 0">
-              <span style="font-size: 22px; font-weight: 500">Patient</span>
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <div id="patientList"></div>
-          </div>
-          <!-- section 2 -->
-          <div
-            class="diagnosis-section"
-            style="
-              padding: 15px 15px;
-              border-radius: 12px;
-              background-color: brown;
-            "
-          >
-            <div
-              style="
-                display: grid;
-                grid-template-columns: 1fr 30%;
-                gap: 15px;
-                margin-bottom: 15px;
-                background-color: #f4f0fe;
-              "
-            >
-              <div style="padding: 0 10px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;padding: 10px 0;">
-                    <div><span style="font-size: 20px; font-weight: bold;">Blood Pressure</span></div>
-                    <div style="display: flex; align-items: center;">
-                        <div style="font-size: 14px;">Last 6 Month</div>
-                        <div style="margin-left: 10px;"><i class="fa-solid fa-angle-down"></i></div>
+    <!-- Font Style Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div style="width: 100%; padding: 0 10px;">
+        <section>
+            <div class="main-nav-section">
+                <div class="logoImg">
+                    <img src="./IMG/TestLogo.svg" />
+                </div>
+                <div>
+                    <ul class="nav-items dashBoardNavIcon">
+                        <i class="fa-solid fa-bars"></i>
+                    </ul>
+                    <ul class="nav-items nav-items-all-icon">
+                        <li>
+                            <i class="fa-solid fa-house"></i>
+                            <span>Overview</span>
+                        </li>
+                        <li>
+                            <i class="fa-regular fa-user"></i>
+                            <span>Patients</span>
+                        </li>
+                        <li>
+                            <i class="fa-regular fa-calendar"></i>
+                            <span>Schedule</span>
+                        </li>
+                        <li>
+                            <i class="fa-regular fa-message"></i>
+                            <span>Message</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-wallet"></i>
+                            <span>Transaction</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-profile-data">
+                    <div class="nav-profile-data-info">
+                        <div>
+                            <img src="./IMG/senior-woman-doctor-and-portrait-smile-for-health-2023-11-27-05-18-16-utc@2x.png"
+                                style="height: 40px; width: 40px" />
+                        </div>
+                        <div class="doctorName">
+                            <span>Dr. Jose Simmons</span><br />
+                            <span style="font-size: 12px; color: #707070">General Practitioner</span>
+                        </div>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-gear"></i>
+                        <i class="fa-solid fa-ellipsis-vertical" style="margin-left: 8px"></i>
                     </div>
                 </div>
-                <canvas id="myChart"></canvas>
-              </div>
-              <div
-                style="
-                  padding: 15px;
-                  display: grid;
-                  grid-template-rows: repeat(2, 1fr);
-                "
-              >
-              <div>
-                  <p
-                    style="margin-bottom: 0; font-weight: bold; font-size: 14px"
-                  >
-                    <i
-                      class="fa-solid fa-circle"
-                      style="margin-right: 5px; color: #e66fd2"
-                    ></i>
-                    Systolic
-                  </p>
-                  <br />
-                  <span style="font-weight: bold; font-size: 22px" id="SystolicValue"></span
-                  ><br />
-                  <p style="margin-top: 10px; font-size: 14px; color: #707070" id="SystolicLevel">
-                  </p>
-                  <hr
-                    style="
-                      height: 1px;
-                      width: 100%;
-                      background-color: #c9c9c989;
-                    "
-                  />
-                </div>
-                <div style="margin-top: -25px;">
-                  <p
-                    style="margin-bottom: 0; font-weight: bold; font-size: 14px"
-                  >
-                    <i
-                      class="fa-solid fa-circle"
-                      style="margin-right: 5px; color: #8c6fe6"
-                    ></i>
-                    Diastolic
-                  </p>
-                  <br />
-                  <span style="font-weight: bold; font-size: 22px" id="DiastolicValue">78</span
-                  ><br />
-                  <p style="margin-top: 10px; font-size: 14px; color: #707070" id="DiastolicLevel">
-                    Lower than Average
-                  </p>
-                </div>
-              </div>
             </div>
-
-            <div class="patient-section-heading" style="padding: 10px 0">
-              <span style="font-size: 22px; font-weight: 500"
-                >Diagnosis History</span
-              >
-            </div>
-            <div
-              style="
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
-              "
-            >
-              <div
-                style="
-                  background-color: #e0f3fa;
-                  padding: 15px;
-                  border-radius: 10px;
-                "
-              >
-                <img src="./IMG/respiratory rate.png" />
-                <p style="font-size: 13px; color: #5b5a5a">Respiratory Rate</p>
-                <span
-                  style="font-size: 30px; font-weight: 600"
-                  id="RespiratoryRateValue"
-                  >20 bpm</span
-                ><br />
-                <span
-                  style="font-size: 12px; color: #707070; margin-top: 15px"
-                  id="RespiratoryRateLevel"
-                  >Normal</span
-                >
-              </div>
-              <div
-                style="
-                  background-color: #ffe6e9;
-                  padding: 15px;
-                  border-radius: 10px;
-                "
-              >
-                <img src="./IMG/temperature.png" />
-                <p style="font-size: 13px; color: #5b5a5a">Temperature</p>
-                <span
-                  style="font-size: 30px; font-weight: 600"
-                  id="TemperatureValue"
-                  >20 bpm</span
-                ><br />
-                <span
-                  style="font-size: 12px; color: #707070; margin-top: 15px"
-                  id="TemperatureLevel"
-                  >Normal</span
-                >
-              </div>
-              <div
-                style="
-                  background-color: #ffe6f1;
-                  padding: 15px;
-                  border-radius: 10px;
-                "
-              >
-                <img src="./IMG/HeartBPM.png" />
-                <p style="font-size: 13px; color: #5b5a5a">Heart Rate</p>
-                <span
-                  style="font-size: 30px; font-weight: 600"
-                  id="HeartRateValue"
-                  >20 bpm</span
-                ><br />
-                <span
-                  style="font-size: 12px; color: #707070; margin-top: 15px"
-                  id="HeartRateLevel"
-                  >Normal</span
-                >
-              </div>
-            </div>
-
-            <div class="" style="padding: 10px 0; margin-top: 15px">
-              <span style="font-size: 22px; font-weight: 500"
-                >Diagnosis List</span
-              >
-              <div>
-                <ul id="patientDiagnosisList" style="list-style-type: none">
-                  <li>
-                    <div
-                      style="
-                        display: grid;
-                        grid-template-columns: 30% 1fr 20%;
-                        gap: 10px;
-                        padding: 8px 16px;
-                        background-color: #f6f7f8;
-                        border-radius: 30px;
-                        margin-bottom: 10px;
-                      "
-                    >
-                      <div>
-                        <span
-                          class="problem-diagnosis"
-                          style="font-size: 14px; font-weight: 500"
-                          >Problem/Diagnosis</span
-                        >
-                      </div>
-                      <div>
-                        <span
-                          class="description"
-                          style="font-size: 14px; font-weight: 500"
-                          >Description</span
-                        >
-                      </div>
-                      <div
-                        class="status-container"
-                        style="font-size: 14px; font-weight: 500"
-                      >
-                        <span class="status">Status</span>
-                      </div>
+        </section>
+        <section>
+            <div class="main-container">
+                <!-- section 1 -->
+                <div class="patient-section scrollable left-column">
+                    <div class="patient-section-heading" style="padding: 10px 0">
+                        <span style="font-size: 24px; font-weight: 500">Patient</span>
+                        <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <!-- section 3 -->
-          <div class="patient-info-section">
-            <div
-              style="
+                    <div id="patientList"></div>
+                </div>
+                <!-- section 2 -->
+                <div class="diagnosis-section middle-column">
+                    <div style="background-color: #FFFFFF; border-radius: 12px; padding-bottom: 10px;">
+                        <div class="patient-section-heading" style="padding: 10px; margin-bottom: 15px;">
+                            <span style="font-size: 24px; font-weight: 500">Diagnosis History</span>
+                        </div>
+                        <div class="bloodPressureChart">
+                            <div>
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center;padding: 15px 0;">
+                                    <div><span style="font-size: 18px; font-weight: 400;">Blood Pressure</span></div>
+                                    <div style="display: flex; align-items: center;">
+                                        <div style="font-size: 14px;">Last 6 Month</div>
+                                        <div style="margin-left: 10px;"><i class="fa-solid fa-angle-down"></i></div>
+                                    </div>
+                                </div>
+                                <div style="background: #000;">
+                                    <canvas id="myChart" style="min-height: 100px; width: 100%;"></canvas>
+                                </div>
+                            </div>
+                            <div style="
+                      padding: 15px;
+                      display: grid;
+                      grid-template-rows: repeat(2, 1fr);
+                    ">
+                                <div>
+                                    <p style="margin-bottom: 0; font-weight: bold; font-size: 14px">
+                                        <i class="fa-solid fa-circle" style="margin-right: 5px; color: #e66fd2"></i>
+                                        Systolic
+                                    </p>
+                                    <br />
+                                    <span style="font-weight: bold; font-size: 22px" id="SystolicValue"></span><br />
+                                    <p style="margin-top: 10px; font-size: 14px; color: #707070" id="SystolicLevel">
+                                    </p>
+                                    <hr style="
+                          height: 1px;
+                          background-color: #c9c9c989;
+                        " />
+                                </div>
+                                <div style="margin-top: -10px;">
+                                    <p style="margin-bottom: 0; font-weight: bold; font-size: 14px">
+                                        <i class="fa-solid fa-circle" style="margin-right: 5px; color: #8c6fe6"></i>
+                                        Diastolic
+                                    </p>
+                                    <br />
+                                    <span style="font-weight: bold; font-size: 22px" id="DiastolicValue">78</span><br />
+                                    <p style="margin-top: 10px; font-size: 14px; color: #707070" id="DiastolicLevel">
+                                        Lower than Average
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="heartDiv">
+                            <div style="
+                      background-color: #e0f3fa;
+                      padding: 15px;
+                      border-radius: 10px;
+                    ">
+                                <img src="./IMG/respiratory rate.png" />
+                                <p style="font-size: 13px; color: #5b5a5a">Respiratory Rate</p>
+                                <span style="font-size: 30px; font-weight: 600" id="RespiratoryRateValue">20
+                                    bpm</span><br />
+                                <span style="font-size: 12px; color: #707070; margin-top: 15px"
+                                    id="RespiratoryRateLevel">Normal</span>
+                            </div>
+                            <div style="
+                      background-color: #ffe6e9;
+                      padding: 15px;
+                      border-radius: 10px;
+                    ">
+                                <img src="./IMG/temperature.png" />
+                                <p style="font-size: 13px; color: #5b5a5a">Temperature</p>
+                                <span style="font-size: 30px; font-weight: 600" id="TemperatureValue">20
+                                    bpm</span><br />
+                                <span style="font-size: 12px; color: #707070; margin-top: 15px"
+                                    id="TemperatureLevel">Normal</span>
+                            </div>
+                            <div style="
+                      background-color: #ffe6f1;
+                      padding: 15px;
+                      border-radius: 10px;
+                    ">
+                                <img src="./IMG/HeartBPM.png" />
+                                <p style="font-size: 13px; color: #5b5a5a">Heart Rate</p>
+                                <span style="font-size: 30px; font-weight: 600" id="HeartRateValue">20 bpm</span><br />
+                                <span style="font-size: 12px; color: #707070; margin-top: 15px"
+                                    id="HeartRateLevel">Normal</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="MainDiagnosisList">
+                        <div>
+                            <span style="font-size: 24px; font-weight: 500">Diagnosis List</span>
+                            <div style="margin-top: 15px;">
+                                <div id="patientDiagnosisList">
+                                    <div>
+                                        <span class="problem-diagnosis"
+                                            style="font-size: 14px; font-weight: 500">Problem/Diagnosis</span>
+                                    </div>
+                                    <div>
+                                        <span class="description"
+                                            style="font-size: 14px; font-weight: 500">Description</span>
+                                    </div>
+                                    <div class="status-container" style="font-size: 14px; font-weight: 500">
+                                        <span class="status">Status</span>
+                                    </div>
+                                </div>
+                                <ul id="patientDiagnosisListUl" style="list-style-type: none; padding-left: 0;">
+                                    <li>
+                                        <div class="problem-diagnosis-first" style="
+                          display: grid;
+                          grid-template-columns: 30% 1fr 20%;
+                          gap: 10px;
+                          background-color: #FFFFFF;
+                          border-radius: 30px;
+                          margin-bottom: 10px;
+                        ">
+                                            <div>
+                                                <span class="problem-diagnosis"
+                                                    style="font-size: 14px; font-weight: 500"></span>
+                                            </div>
+                                            <div>
+                                                <span class="description"
+                                                    style="font-size: 14px; font-weight: 500"></span>
+                                            </div>
+                                            <div class="status-container" style="font-size: 14px; font-weight: 500">
+                                                <span class="status"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- section 3 -->
+                <div class="patient-info-section right-column">
+                    <div style="
                 background-color: #ffffff;
                 color: black;
                 padding: 10px;
                 border-radius: 12px;
-              "
-            >
-              <div
-                style="
+              ">
+                        <div style="
                   display: flex;
                   flex-direction: column;
                   justify-content: center;
                   align-items: center;
-                "
-              >
-                <div style="height: 200px; width: 200">
-                  <img
-                    id="profilePicture"
-                    src="./IMG/senior-woman-doctor-and-portrait-smile-for-health-2023-11-27-05-18-16-utc@2x.png"
-                    height="100%; width:100%"
-                  />
-                </div>
-                <h3
-                  style="
+                ">
+                            <div style="height: 200px; width: 200">
+                                <img id="profilePicture"
+                                    src="./IMG/senior-woman-doctor-and-portrait-smile-for-health-2023-11-27-05-18-16-utc@2x.png"
+                                    height="100%; width:100%" />
+                            </div>
+                            <h3 style="
                     font-size: 18px;
                     font-weight: 600;
                     letter-spacing: 0.5px;
-                  "
-                  id="patientName"
-                ></h3>
-              </div>
-              <div style="margin-top: 10px">
-                <div
-                  class="nav-profile-data"
-                  style="justify-content: space-between; margin-top: 15px"
-                >
-                  <div class="nav-profile-data-info">
-                    <div
-                      style="
+                  " id="patientName"></h3>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <div class="nav-profile-data" style="justify-content: space-between; margin-top: 15px">
+                                <div class="nav-profile-data-info">
+                                    <div style="
                         background-color: #f6f7f8;
                         padding: 8px;
                         border-radius: 160px;
@@ -325,27 +251,19 @@
                         height: 28px;
                         display: grid;
                         place-items: center;
-                      "
-                    >
-                      <i class="fa-regular fa-calendar"></i>
-                    </div>
-                    <div style="margin-left: 6px">
-                      <span style="font-size: 14px">Date of Birth</span><br />
-                      <span
-                        style="font-size: 13px; font-weight: bold"
-                        id="patientDob"
-                        >August 23, 1996</span
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="nav-profile-data"
-                  style="justify-content: space-between; margin-top: 15px"
-                >
-                  <div class="nav-profile-data-info">
-                    <div
-                      style="
+                      ">
+                                        <i class="fa-regular fa-calendar"></i>
+                                    </div>
+                                    <div style="margin-left: 6px">
+                                        <span style="font-size: 14px">Date of Birth</span><br />
+                                        <span style="font-size: 13px; font-weight: bold" id="patientDob">August 23,
+                                            1996</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nav-profile-data" style="justify-content: space-between; margin-top: 15px">
+                                <div class="nav-profile-data-info">
+                                    <div style="
                         background-color: #f6f7f8;
                         padding: 8px;
                         border-radius: 160px;
@@ -353,27 +271,19 @@
                         height: 28px;
                         display: grid;
                         place-items: center;
-                      "
-                    >
-                      <i class="fa-solid fa-venus"></i>
-                    </div>
-                    <div style="margin-left: 6px">
-                      <span style="font-size: 14px">Gender</span><br />
-                      <span
-                        style="font-size: 13px; font-weight: bold"
-                        id="patientGender"
-                        >Female</span
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="nav-profile-data"
-                  style="justify-content: space-between; margin-top: 15px"
-                >
-                  <div class="nav-profile-data-info">
-                    <div
-                      style="
+                      ">
+                                        <i class="fa-solid fa-venus"></i>
+                                    </div>
+                                    <div style="margin-left: 6px">
+                                        <span style="font-size: 14px">Gender</span><br />
+                                        <span style="font-size: 13px; font-weight: bold"
+                                            id="patientGender">Female</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nav-profile-data" style="justify-content: space-between; margin-top: 15px">
+                                <div class="nav-profile-data-info">
+                                    <div style="
                         background-color: #f6f7f8;
                         padding: 8px;
                         border-radius: 160px;
@@ -381,27 +291,19 @@
                         height: 28px;
                         display: grid;
                         place-items: center;
-                      "
-                    >
-                      <i class="fa-solid fa-phone"></i>
-                    </div>
-                    <div style="margin-left: 6px">
-                      <span style="font-size: 14px">Contact Info.</span><br />
-                      <span
-                        style="font-size: 13px; font-weight: bold"
-                        id="patientPhoneNo1"
-                        >(145) 555-3244</span
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="nav-profile-data"
-                  style="justify-content: space-between; margin-top: 15px"
-                >
-                  <div class="nav-profile-data-info">
-                    <div
-                      style="
+                      ">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <div style="margin-left: 6px">
+                                        <span style="font-size: 14px">Contact Info.</span><br />
+                                        <span style="font-size: 13px; font-weight: bold" id="patientPhoneNo1">(145)
+                                            555-3244</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nav-profile-data" style="justify-content: space-between; margin-top: 15px">
+                                <div class="nav-profile-data-info">
+                                    <div style="
                         background-color: #f6f7f8;
                         padding: 8px;
                         border-radius: 160px;
@@ -409,28 +311,19 @@
                         height: 28px;
                         display: grid;
                         place-items: center;
-                      "
-                    >
-                      <i class="fa-solid fa-phone"></i>
-                    </div>
-                    <div style="margin-left: 6px">
-                      <span style="font-size: 14px">Emergency Contacts</span
-                      ><br />
-                      <span
-                        style="font-size: 13px; font-weight: bold"
-                        id="patientPhoneNo2"
-                        >(145) 555-5678</span
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="nav-profile-data"
-                  style="justify-content: space-between; margin-top: 15px"
-                >
-                  <div class="nav-profile-data-info">
-                    <div
-                      style="
+                      ">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <div style="margin-left: 6px">
+                                        <span style="font-size: 14px">Emergency Contacts</span><br />
+                                        <span style="font-size: 13px; font-weight: bold" id="patientPhoneNo2">(145)
+                                            555-5678</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nav-profile-data" style="justify-content: space-between; margin-top: 15px">
+                                <div class="nav-profile-data-info">
+                                    <div style="
                         background-color: #f6f7f8;
                         padding: 8px;
                         border-radius: 160px;
@@ -438,148 +331,157 @@
                         height: 28px;
                         display: grid;
                         place-items: center;
-                      "
-                    >
-                      <i class="fa-solid fa-shield"></i>
+                      ">
+                                        <i class="fa-solid fa-shield"></i>
+                                    </div>
+                                    <div style="margin-left: 6px">
+                                        <span style="font-size: 14px">Insurance Provider</span><br />
+                                        <span style="font-size: 13px; font-weight: bold"
+                                            id="patientInsuranceProvider">Sunrise Health Assurance</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 20px">
+                            <button class="info-btn">Show All Information</button>
+                        </div>
                     </div>
-                    <div style="margin-left: 6px">
-                      <span style="font-size: 14px">Insurance Provider</span
-                      ><br />
-                      <span
-                        style="font-size: 13px; font-weight: bold"
-                        id="patientInsuranceProvider"
-                        >Sunrise Health Assurance</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div style="text-align: center; margin-top: 20px">
-                <button class="info-btn">Show All Information</button>
-              </div>
-            </div>
-            <div
-              style="
+                    <div style="
                 background-color: #ffffff;
                 border-radius: 12px;
                 margin-top: 18px;
                 padding: 10px;
-              "
-            >
-              <div class="patient-section-heading">
-                <span style="font-size: 22px; font-weight: 500">
-                  Lab Results</span
-                >
-              </div>
-              <div>
-                <ul
-                  style="list-style-type: none; padding: 0 10px"
-                  id="labResultLi"
-                ></ul>
-              </div>
+              ">
+                        <div class="patient-section-heading">
+                            <span style="font-size: 24px; font-weight: 500">
+                                Lab Results</span>
+                        </div>
+                        <div>
+                            <ul style="list-style-type: none; padding: 0 10px" id="labResultLi"></ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
     </div>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        let myChart; // Declare a global variable to hold the chart instance
+
         function addChartDataFunction(data) {
-          console.log("Inside the addChartDataFunction Function ...");
-      
-          const ChartMonthName = []; // Initialize an empty array for months
-          const systolicValues = []; // Initialize an empty array for systolic values
-          const diastolicValues = []; // Initialize an empty array for diastolic values
-      
-          // Check if the first patient and their diagnosis history exist
-          if (data[0] && data[0].diagnosis_history.length > 0) {
-            const diagnosisHistory = data[0].diagnosis_history; // Get diagnosis history of the first patient
-      
-            // Loop through diagnosisHistory and push each month to ChartMonthName,
-            // systolic and diastolic values to their respective arrays
-            diagnosisHistory.forEach((historyItem) => {
-              ChartMonthName.push(historyItem.month); // Add each month to the array
-              systolicValues.push(historyItem.blood_pressure.systolic.value); // Add systolic value to the array
-              diastolicValues.push(historyItem.blood_pressure.diastolic.value); // Add diastolic value to the array
-            });
-          }
-      
-          console.log("ChartMonthName:", ChartMonthName);
-          console.log("Systolic Values:", systolicValues);
-          console.log("Diastolic Values:", diastolicValues);
-      
-          // Prepare data for line chart
-          const lineData = {
-            labels: ChartMonthName,
-            datasets: [
-              {
-                label: "Systolic Blood Pressure Values",
-                data: systolicValues,
-                borderColor: "rgba(75, 192, 192, 1)", // Line color
-                backgroundColor: "rgba(75, 192, 192, 0.5)", // Area fill color
-                fill: false, // Don't fill the area under the line
-                tension: 0.1, // Smooth the line
-              },
-              {
-                label: "Diastolic Blood Pressure Values",
-                data: diastolicValues,
-                borderColor: "rgba(255, 99, 132, 1)", // Line color
-                backgroundColor: "rgba(255, 99, 132, 0.5)", // Area fill color
-                fill: false, // Don't fill the area under the line
-                tension: 0.1, // Smooth the line
-              },
-            ],
-          };
-      
-          // Line chart configuration
-          const config = {
-            type: 'line',
-            data: lineData,
-            options: {
-              responsive: true,
-              plugins: {
-                legend: {
-                  position: 'top',
+            console.log("Inside the addChartDataFunction Function ...", data);
+
+            const clickedData = data;
+            console.log(clickedData)
+            console.log("Clicked Data:", clickedData.diagnosis_history)
+
+            const ChartMonthName = []; // Initialize an empty array for months
+            const systolicValues = []; // Initialize an empty array for systolic values
+            const diastolicValues = []; // Initialize an empty array for diastolic values
+
+            // Check if clickedData and its diagnosis history exist
+            if (clickedData && clickedData.diagnosis_history && clickedData.diagnosis_history.length > 0) {
+                const diagnosisHistory = clickedData.diagnosis_history; // Get diagnosis history of clickedData
+                console.log("diagnosisHistory Array:", diagnosisHistory);
+
+                // Loop through diagnosisHistory and push each month to ChartMonthName,
+                // systolic and diastolic values to their respective arrays
+                diagnosisHistory.forEach((historyItem) => {
+                    ChartMonthName.push(historyItem.month); // Add each month to the array
+                    systolicValues.push(historyItem.blood_pressure.systolic.value); // Add systolic value to the array
+                    diastolicValues.push(historyItem.blood_pressure.diastolic.value); // Add diastolic value to the array
+                });
+            } else if (data[1] && data[1].diagnosis_history && data[1].diagnosis_history.length > 0) {
+                // Fallback in case clickedData doesn't have diagnosis history
+                const diagnosisHistory = data[1].diagnosis_history;
+                console.log("Fallback diagnosisHistory Array:", diagnosisHistory);
+
+                diagnosisHistory.forEach((historyItem) => {
+                    ChartMonthName.push(historyItem.month); // Add each month to the array
+                    systolicValues.push(historyItem.blood_pressure.systolic.value); // Add systolic value to the array
+                    diastolicValues.push(historyItem.blood_pressure.diastolic.value); // Add diastolic value to the array
+                });
+            }
+
+            // Prepare data for line chart
+            const lineData = {
+                labels: ChartMonthName,
+                datasets: [
+                    {
+                        label: "Systolic Blood Pressure Values",
+                        data: systolicValues,
+                        borderColor: "rgba(75, 192, 192, 1)", // Line color
+                        backgroundColor: "rgba(75, 192, 192, 0.5)", // Area fill color
+                        fill: false, // Don't fill the area under the line
+                        tension: 0.1, // Smooth the line
+                    },
+                    {
+                        label: "Diastolic Blood Pressure Values",
+                        data: diastolicValues,
+                        borderColor: "rgba(255, 99, 132, 1)", // Line color
+                        backgroundColor: "rgba(255, 99, 132, 0.5)", // Area fill color
+                        fill: false, // Don't fill the area under the line
+                        tension: 0.1, // Smooth the line
+                    },
+                ],
+            };
+
+            // Line chart configuration
+            const config = {
+                type: 'line',
+                data: lineData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return `${context.dataset.label}: ${context.raw} (Month: ${ChartMonthName[context.dataIndex]})`;
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Blood Pressure Line Chart'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Months'
+                            },
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Blood Pressure Values'
+                            },
+                            beginAtZero: true,
+                        },
+                    },
                 },
-                tooltip: {
-                  callbacks: {
-                    label: function(context) {
-                      return `${context.dataset.label}: ${context.raw} (Month: ${ChartMonthName[context.dataIndex]})`;
-                    }
-                  }
-                },
-                title: {
-                  display: true,
-                  text: 'Blood Pressure Line Chart'
-                }
-              },
-              scales: {
-                x: {
-                  title: {
-                    display: true,
-                    text: 'Months'
-                  },
-                },
-                y: {
-                  title: {
-                    display: true,
-                    text: 'Blood Pressure Values'
-                  },
-                  beginAtZero: true,
-                },
-              },
-            },
-          };
-      
-          // Create chart
-          const ctx = document.getElementById("myChart");
-          const myChart = new Chart(ctx, config);
+            };
+
+            // Destroy the existing chart if it exists
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            // Create chart
+            const ctx = document.getElementById("myChart");
+            myChart = new Chart(ctx, config); // Store the new chart instance globally
         }
-      </script>
-      
-      
-   <!-- <script>
+    </script>
+
+
+
+
+    <!-- <script>
   // Constants
   const DATA_COUNT = 7;
   const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
@@ -704,6 +606,7 @@
   ];
 </script> -->
 
-      
-  </body>
+
+</body>
+
 </html>

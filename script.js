@@ -1,4 +1,4 @@
-async function fetchPatientPersonalInfo() {
+async function fetchPatientPersonalInfo(result) {
     try {
         // Create the Basic Auth header
         const username = 'coalition';
@@ -32,15 +32,14 @@ async function fetchPatientPersonalInfo() {
         //Patient Diagnosis History Data Add function
         addPatientDiagnosisListData(data);
 
-        //Patient Diagnosis List Data Add function
-        // addPatientDiagnosisHistoryData(data);
-        aaPatientDiagnosisHistory(data);
-
         //Personal Patient Data Add function Call
         addPersonalData(data);
 
         //Lab Test Data Add function Call
         addLabTextData(data)
+
+        // addPatientDiagnosisHistoryData(data);
+        aaPatientDiagnosisHistory(data);
         
 
     } catch (error) {
@@ -53,9 +52,6 @@ fetchPatientPersonalInfo();
 
 //Patient List Data Add function Define
 function addPatientListData(data){
-    console.log('Inside the addPatientListData function');
-    console.log(data);
-
     const patientListMainDiv = document.getElementById("patientList")
     data.forEach((result) => {
         patientDiv = document.createElement('div');
@@ -100,6 +96,29 @@ function addPatientListData(data){
 
         patientListMainDiv.appendChild(patientDiv);
 
+        // Add click event listener to each patientDiv to Update the UI...
+        patientDiv.addEventListener('click', () => {
+
+
+            //Patient List Data Add function Update
+            addPersonalData(result);
+
+            //Lab Test Data Add function Update
+            addLabTextData(result);
+
+            //PatientDiagnosisHistory Data Add function Update
+            aaPatientDiagnosisHistory(result);
+
+            //Patient Diagnosis History Data Add function
+            addPatientDiagnosisListData(result);
+
+            //Chart Data Function
+            addChartDataFunction(result);
+
+            // Blood Pressure Data Add Function
+            addBloodPressure(result);
+        });
+
     })
 }
 
@@ -124,81 +143,120 @@ function addPatientListData(data){
 
 
 //Blood Pressure Data Add function Define
-function addBloodPressure(data){
 
-    const {diastolic,systolic} = data[4].diagnosis_history[0].blood_pressure;
+function addBloodPressure(data) {
+    const clickedData = data;
+    
+    // Check if clickedData and its diagnosis_history exist, otherwise fall back to data[0]
+    if (clickedData && clickedData.diagnosis_history && clickedData.diagnosis_history.length > 0) {
+        const { diastolic, systolic } = clickedData.diagnosis_history[0].blood_pressure;
 
-    const SystolicValue = document.getElementById("SystolicValue");
-    SystolicValue.textContent = `${systolic.value}`
+        // Update Systolic Value
+        const SystolicValue = document.getElementById("SystolicValue");
+        SystolicValue.textContent = systolic?.value || "N/A";  // Ensure systolic.value exists
 
-    const SystolicLevel = document.getElementById("SystolicLevel");
-    SystolicLevel.textContent = `${systolic.levels}`
+        // Update Systolic Level
+        const SystolicLevel = document.getElementById("SystolicLevel");
+        SystolicLevel.textContent = systolic?.levels || "N/A";  // Ensure systolic.levels exists
 
-    const DiastolicValue = document.getElementById("DiastolicValue");
-    DiastolicValue.textContent = `${diastolic.value}`
+        // Update Diastolic Value
+        const DiastolicValue = document.getElementById("DiastolicValue");
+        DiastolicValue.textContent = diastolic?.value || "N/A";  // Ensure diastolic.value exists
 
-    const DiastolicLevel = document.getElementById("DiastolicLevel");
-    DiastolicLevel.textContent = `${diastolic.levels}`
+        // Update Diastolic Level
+        const DiastolicLevel = document.getElementById("DiastolicLevel");
+        DiastolicLevel.textContent = diastolic?.levels || "N/A";  // Ensure diastolic.levels exists
+    } else if (data[0] && data[0].diagnosis_history && data[0].diagnosis_history.length > 0) {
+        // Fallback to data[0] if clickedData is not available
+        const { diastolic, systolic } = data[0].diagnosis_history[0].blood_pressure;
+
+        // Update Systolic Value
+        const SystolicValue = document.getElementById("SystolicValue");
+        SystolicValue.textContent = systolic?.value || "N/A";  // Ensure systolic.value exists
+
+        // Update Systolic Level
+        const SystolicLevel = document.getElementById("SystolicLevel");
+        SystolicLevel.textContent = systolic?.levels || "N/A";  // Ensure systolic.levels exists
+
+        // Update Diastolic Value
+        const DiastolicValue = document.getElementById("DiastolicValue");
+        DiastolicValue.textContent = diastolic?.value || "N/A";  // Ensure diastolic.value exists
+
+        // Update Diastolic Level
+        const DiastolicLevel = document.getElementById("DiastolicLevel");
+        DiastolicLevel.textContent = diastolic?.levels || "N/A";  // Ensure diastolic.levels exists
+    } else {
+        console.warn("No valid diagnosis history found.");
+    }
 }
+
 
 // Patient Diagnosis List Data Add function Define
 function aaPatientDiagnosisHistory(data) {
+    const diagnosisHis = data;
 
-    const diagnosisHistory = data[4].diagnosis_history[0]
-    const RespiratoryRateValue = document.getElementById("RespiratoryRateValue");
-    const RespiratoryRateLevel = document.getElementById("RespiratoryRateLevel");
-    RespiratoryRateValue.textContent = `${data[4].diagnosis_history[0].
-        respiratory_rate.value  
-        }bpm`
-        RespiratoryRateLevel.textContent = data[4].diagnosis_history[0].
-        respiratory_rate.levels
+    // Safely access the first diagnosis_history item
+    const diagnosisHistory = diagnosisHis.diagnosis_history ? diagnosisHis.diagnosis_history[0] : diagnosisHis[0].diagnosis_history[0];
 
-    const TemperatureValue = document.getElementById("TemperatureValue");
-    const TemperatureLevel = document.getElementById("TemperatureLevel");
-    TemperatureValue.textContent = `${data[4].diagnosis_history[0].
-        temperature.value  
-        }F`
-        TemperatureLevel.textContent = data[4].diagnosis_history[0].
-        temperature.levels
+    if (diagnosisHistory) {
+        // Updating Respiratory Rate
+        const RespiratoryRateValue = document.getElementById("RespiratoryRateValue");
+        const RespiratoryRateLevel = document.getElementById("RespiratoryRateLevel");
+        RespiratoryRateValue.textContent = `${diagnosisHistory.respiratory_rate.value} bpm`;
+        RespiratoryRateLevel.textContent = diagnosisHistory.respiratory_rate.levels;
 
-    const HeartRateValue = document.getElementById("HeartRateValue");
-    const HeartRateLevel = document.getElementById("HeartRateLevel");
-    HeartRateValue.textContent = `${data[4].diagnosis_history[0].
-        heart_rate.value  
-        }bpm`
-        HeartRateLevel.textContent = data[4].diagnosis_history[0].
-        heart_rate.levels
+        // Updating Temperature
+        const TemperatureValue = document.getElementById("TemperatureValue");
+        const TemperatureLevel = document.getElementById("TemperatureLevel");
+        TemperatureValue.textContent = `${diagnosisHistory.temperature.value} F`;
+        TemperatureLevel.textContent = diagnosisHistory.temperature.levels;
+
+        // Updating Heart Rate
+        const HeartRateValue = document.getElementById("HeartRateValue");
+        const HeartRateLevel = document.getElementById("HeartRateLevel");
+        HeartRateValue.textContent = `${diagnosisHistory.heart_rate.value} bpm`;
+        HeartRateLevel.textContent = diagnosisHistory.heart_rate.levels;
+    } else {
+        console.error("No diagnosis history available for this patient.");
+    }
 }
+
 
 // Patient Diagnosis List Data Add function Define
 function addPatientDiagnosisListData(data) {
-    // Access the diagnostic_list directly from the first patient object
-    const diagnosticList = data[0].diagnostic_list;
+    // Access the diagnostic_list directly from the patient object (handling both single patient and array cases)
+    const diagnosticList = data.diagnostic_list || data[0]?.diagnostic_list;
 
-    // Select the first list item as a template for cloning
-    const patientDiagnosisListItem = document.querySelector('#patientDiagnosisList li');
+    // Select the first list item template for cloning (from the UL)
+    const patientDiagnosisListItem = document.querySelector('#patientDiagnosisListUl li');
 
     if (patientDiagnosisListItem && Array.isArray(diagnosticList)) {
-        // Clear existing items if needed (optional)
-        // document.querySelector('#patientDiagnosisList').innerHTML = ''; // Uncomment if you want to clear existing items
+        // Clear existing items in the list (reset for new data)
+        document.querySelector('#patientDiagnosisListUl').innerHTML = '';
 
         diagnosticList.forEach((DiagnosisListItem) => {
-            // Clone the existing list item
+            // Clone the <li> item
             const cloneExistingDiagnosisListItem = patientDiagnosisListItem.cloneNode(true);
-            cloneExistingDiagnosisListItem.style.fontSize = '3px'
 
             // Update the text content with new data using class selectors
+            const problemDiagnosisFirst = cloneExistingDiagnosisListItem.querySelector('.problem-diagnosis-first');
             const problemDiagnosisSpan = cloneExistingDiagnosisListItem.querySelector('.problem-diagnosis');
             const descriptionSpan = cloneExistingDiagnosisListItem.querySelector('.description');
             const statusSpan = cloneExistingDiagnosisListItem.querySelector('.status');
 
             // Set the values from the DiagnosisListItem
+            problemDiagnosisFirst.style.padding = '8px 16px'; // Set the problem/diagnosis name
             problemDiagnosisSpan.textContent = DiagnosisListItem.name; // Set the problem/diagnosis name
             descriptionSpan.textContent = DiagnosisListItem.description; // Set the description
             statusSpan.textContent = DiagnosisListItem.status; // Set the status
 
-            // Append the cloned item to the patientDiagnosisList
-            document.querySelector('#patientDiagnosisList').appendChild(cloneExistingDiagnosisListItem);
+            // Set font sizes (as per your requirement)
+            problemDiagnosisSpan.style.fontSize = "14px";
+            descriptionSpan.style.fontSize = "12px";
+            statusSpan.style.fontSize = "14px";
+
+            // Append the cloned item to the UL
+            document.querySelector('#patientDiagnosisListUl').appendChild(cloneExistingDiagnosisListItem);
         });
     } else {
         console.log('Error: No valid patient diagnosis list or diagnostic list is not an array.');
@@ -206,36 +264,41 @@ function addPatientDiagnosisListData(data) {
 }
 
 
-// Personal Patient Data Add function Define
-function addPersonalData(data){
-    const profilePicture = document.getElementById("profilePicture");
-        const PatientName = document.getElementById("patientName");
-        const patientDob = document.getElementById("patientDob");
-        const patientGender = document.getElementById("patientGender");
-        const patientPhoneNo1 = document.getElementById("patientPhoneNo1");
-        const patientPhoneNo2 = document.getElementById("patientPhoneNo2");
-        const patientInsuranceProvider = document.getElementById("patientInsuranceProvider");
 
-        profilePicture.src = data[3].profile_picture
-        PatientName.textContent = data[4].name
-        patientDob.textContent = data[4].date_of_birth
-        patientGender.textContent = data[4].gender
-        patientPhoneNo1.textContent = data[4].phone_number
-        patientPhoneNo2.textContent = data[4].phone_number
-        patientInsuranceProvider.textContent = data[4].insurance_type
+
+// Personal Patient Data Add function Define
+function addPersonalData(data) {
+    const profilePicture = document.getElementById("profilePicture");
+    const patientName = document.getElementById("patientName");
+    const patientDob = document.getElementById("patientDob");
+    const patientGender = document.getElementById("patientGender");
+    const patientPhoneNo1 = document.getElementById("patientPhoneNo1");
+    const patientPhoneNo2 = document.getElementById("patientPhoneNo2");
+    const patientInsuranceProvider = document.getElementById("patientInsuranceProvider");
+
+    // Using nullish coalescing operator (??) to provide a fallback value
+    profilePicture.src = (data[0] && data[0].profile_picture) || (data.profile_picture || 'default_image.png'); // Provide a default image if none exists
+    patientName.textContent = (data[0] && data[0].name) || (data.name || 'N/A');
+    patientDob.textContent = (data[0] && data[0].date_of_birth) || (data.date_of_birth || 'N/A');
+    patientGender.textContent = (data[0] && data[0].gender) || (data.gender || 'N/A');
+    patientPhoneNo1.textContent = (data[0] && data[0].phone_number) || (data.phone_number || 'N/A');
+    patientPhoneNo2.textContent = (data[0] && data[0].phone_number) || (data.phone_number || 'N/A'); // Assuming you want to show the same phone number
+    patientInsuranceProvider.textContent = (data[0] && data[0].insurance_type) || (data.insurance_type || 'N/A');
 }
+
 
 // Lab List Data Add function Define
 function addLabTextData(data) {
-    
     // Ensure we are working with the first patient object
-    const patient = data[5]; // Get the first patient object
+    const patient = data[0] || data; // Get the first patient object
 
     // Check if lab_results exists and is an array
     if (patient.lab_results && Array.isArray(patient.lab_results)) {
         // Get the parent <ul> or <ol> where the results will be displayed
         const labResultsList = document.getElementById("labResultLi");
-    
+
+        labResultsList.innerHTML = ''; // Clear previous lab results
+
         patient.lab_results.forEach((result) => {
             
             // Create a new <li> for each lab result
@@ -251,7 +314,7 @@ function addLabTextData(data) {
             const nameSpan = document.createElement('span');
             nameSpan.style.fontSize = '12px';
             nameSpan.style.fontWeight = 'bold';
-            nameSpan.textContent = result; // Use the result as text content
+            nameSpan.textContent = result; // Assuming result is an object with a name property
 
             nameDiv.appendChild(nameSpan);
 
@@ -276,4 +339,5 @@ function addLabTextData(data) {
         console.error('No lab results available for this patient.');
     }
 }
+
 
