@@ -1,8 +1,8 @@
 body {
     display: flex;
     font-family: Arial, sans-serif;
-    max-width: 1440px;
-    background-color: #91bbe5;
+    max-width: 1460px;
+    /* background-color: #91bbe5; */
     /* padding: 15px; */
     /* overflow-x: hidden; */
     font-family: "Rubik", sans-serif;
@@ -17,6 +17,7 @@ body {
     background-color: #FFFFFF;
     padding: 0 25px;
     border-radius: 60px;
+    margin-top: 18px;
 }
 
 .nav-items {
